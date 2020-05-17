@@ -1,3 +1,8 @@
+/*  Cesarin Abreu:
+    Javascript to create the board (world). Including functions to get a new board set up 
+    and coded life rules.
+*/
+
 
 	var Board;
 	var xsize = 10;
@@ -106,29 +111,37 @@
 		return n;
 	}
 
+    // kill if there is a bacteria alive in the given position of the board.
 	function Kill(Board,x,y)
 	{
 		if(Board[x][y] === alive)
 			Board[x][y] = dead;
 	}
 
+    // Bring a bacteria to life if there are not bacteria alive in this position.
 	function MakeLive(Board,x,y)
 	{
 		if(Board[x][y] === dead)
 			Board[x][y] = alive;
 	}
 
+    // Next bacteria life cicle.
 	function NextStep(Board)
 	{
 
+        // Check all board positions
 		for(var x = 0; x < xsize; ++x)
 		{
 			for(var y = 0; y < ysize; ++y)
 			{
-				var n=0;
-				n = Neighbors(Board,x,y);
-				if(n==3){ MakeLive(newBoard,x,y);}
-				if((n<2)||(n>3)){ Kill(newBoard,x,y);}
+                var n=0;
+
+                // Check how many living neighbors this board position has.
+                n = Neighbors(Board,x,y); 
+                // Bring a bacteria to life If there are 3 living neightbors in this position.
+                if(n==3){ MakeLive(newBoard,x,y);}
+                // Kill any living bacteria in this position if it has less or more than 3 living neoghtbors.
+				else if((n<2)||(n>3)){ Kill(newBoard,x,y);}
 			}
 		}
 		
@@ -147,7 +160,8 @@
 	}
 
 
-	// Array cloning method from http://stackoverflow.com/questions/2294703/multidimensional-array-cloning-using-javascript
+    // Array cloning method from: 
+    // http://stackoverflow.com/questions/2294703/multidimensional-array-cloning-using-javascript
 	Array.prototype.clone = function() {
 		var arr = this.slice(0);
 		for( var i = 0; i < this.length; i++ ) {
@@ -161,9 +175,11 @@
 
 	function Main(b)
 	{
-		// *** Change this variable to choose a different baord setup from below
+        // User chooses board setup: blinker, glider, or flower. 
+        // Flower is the default board set up.
 		var BoardSetup = b;
-		
+        
+        // Create new board
 		Board = new Array(xsize);
 		for(var x = 0; x < xsize; ++x)
 		{
@@ -171,7 +187,8 @@
 			for(var y = 0; y < ysize; ++y)
 				Board[x][y] = 0;
 		}
-		
+        
+        // Add the selected set up in the board.
 		if(BoardSetup == "blinker")
 		{
 			Board[1][0] = 1;
@@ -207,6 +224,6 @@
 			Board[9][8] = 1;
 			Board[0][8] = 1;
 		}
-		
+		// Display the current board.
 		DrawBoard(Board);
 	}
