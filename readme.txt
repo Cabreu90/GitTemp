@@ -6,6 +6,6 @@ Some things i can work on:
 - Add more feaures. For intance, the users can create their own initial boards/world.
 
 Fictional College Relational Database:
-This was my final project for my advanced relational databases course in college. I first created an Entity Relationship Diagram (ERD) and then i created the dabase and inserted some sample data to test.
+This was my final project for my advanced relational databases course in college. I first created an Entity Relationship Diagram (ERD) to describe the data in all the tables in a debase and how they related to eachother. Then i created the dabase and inserted some sample data to test.
 
 We used ran a few queries too that I might add later.
